@@ -344,21 +344,25 @@ do { myNumber = prompt('Введіть значення', '0');
 
 // alert( getMaxSubSum([-1, 2, 3, -9]) );
 
-// function Calculator() {
-//     this.sum = function() {
-//         return this.a + this.b;
-//     };
-//     this.mul = function() {
-//         return this.a * this.b;
-//     };
-//    this.read = function() {
-//         this.a = +prompt("?", "");
-//         this.b = +prompt("?", "");
-//     };
+function Calculator() {
+    this.sum = function() {
+        return this.a + this.b;
+    };
+    this.mul = function() {
+        return this.a * this.b;
+    };
+   this.read = function() {
+        this.a = +prompt("?", "");
+        this.b = +prompt("?", "");
+    };
+}
+let calculator = new Calculator() 
+
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
+
+// function unique(arr) {
+
 // }
-// let calculator = new Calculator() 
-
-// calculator.read();
-
-// alert( "Sum=" + calculator.sum() );
-// alert( "Mul=" + calculator.mul() );
