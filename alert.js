@@ -344,25 +344,37 @@ do { myNumber = prompt('Введіть значення', '0');
 
 // alert( getMaxSubSum([-1, 2, 3, -9]) );
 
-function Calculator() {
-    this.sum = function() {
-        return this.a + this.b;
-    };
-    this.mul = function() {
-        return this.a * this.b;
-    };
-   this.read = function() {
-        this.a = +prompt("?", "");
-        this.b = +prompt("?", "");
-    };
-}
-let calculator = new Calculator() 
-
-calculator.read();
-
-alert( "Sum=" + calculator.sum() );
-alert( "Mul=" + calculator.mul() );
-
-// function unique(arr) {
-
+// function Calculator() {
+//     this.sum = function() {
+//         return this.a + this.b;
+//     };
+//     this.mul = function() {
+//         return this.a * this.b;
+//     };
+//    this.read = function() {
+//         this.a = +prompt("?", "");
+//         this.b = +prompt("?", "");
+//     };
 // }
+// let calculator = new Calculator() 
+
+// calculator.read();
+
+// alert( "Sum=" + calculator.sum() );
+// alert( "Mul=" + calculator.mul() );
+
+describe("unique", function() {
+    it("removes non-unique elements", function() {
+      let strings = ["Hare", "Krishna", "Hare", "Krishna",
+        "Krishna", "Krishna", "Hare", "Hare", ":-O"
+      ];
+  
+      assert.deepEqual(unique(strings), ["Hare", "Krishna", ":-O"]);
+    });
+  
+    it("does not change the source array", function() {
+      let strings = ["Krishna", "Krishna", "Hare", "Hare"];
+      unique(strings);
+      assert.deepEqual(strings, ["Krishna", "Krishna", "Hare", "Hare"]);
+    });
+  });
