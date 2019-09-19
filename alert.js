@@ -363,18 +363,179 @@ do { myNumber = prompt('Введіть значення', '0');
 // alert( "Sum=" + calculator.sum() );
 // alert( "Mul=" + calculator.mul() );
 
-describe("unique", function() {
-    it("removes non-unique elements", function() {
-      let strings = ["Hare", "Krishna", "Hare", "Krishna",
-        "Krishna", "Krishna", "Hare", "Hare", ":-O"
-      ];
+// describe("unique", function() {
+//     it("removes non-unique elements", function() {
+//       let strings = ["Hare", "Krishna", "Hare", "Krishna",
+//         "Krishna", "Krishna", "Hare", "Hare", ":-O"
+//       ];
   
-      assert.deepEqual(unique(strings), ["Hare", "Krishna", ":-O"]);
-    });
+//       assert.deepEqual(unique(strings), ["Hare", "Krishna", ":-O"]);
+//     });
   
-    it("does not change the source array", function() {
-      let strings = ["Krishna", "Krishna", "Hare", "Hare"];
-      unique(strings);
-      assert.deepEqual(strings, ["Krishna", "Krishna", "Hare", "Hare"]);
-    });
-  });
+//     it("does not change the source array", function() {
+//       let strings = ["Krishna", "Krishna", "Hare", "Hare"];
+//       unique(strings);
+//       assert.deepEqual(strings, ["Krishna", "Krishna", "Hare", "Hare"]);
+//     });
+//   });
+
+// function intersection(arr1, arr2) {
+//   return arr1.filter(item => arr2.includes(item));
+// }
+
+// describe("aclean", function() {
+
+//   it("returns exactly 1 word from each anagram set", function() {
+//     let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+//     let result = aclean(arr);
+//     assert.equal(result.length, 3);
+
+//     assert.equal(intersection(result, ["nap", "PAN"]).length, 1);
+//     assert.equal(intersection(result, ["teachers", "cheaters", "hectares"]).length, 1);
+//     assert.equal(intersection(result, ["ear", "era"]).length, 1);
+
+//   });
+
+//   it("is case-insensitive", function() {
+//     let arr = ["era", "EAR"];
+//     assert.equal(aclean(arr).length, 1);
+//   });
+
+// });
+
+// let map = new Map();
+
+// map.set("name", "John");
+
+// let keys = Array.from(map.keys());
+
+// keys.push("more");
+// keys.push("Iron");
+
+// alert(keys);
+
+// let messages = [
+//   {text: "Hello", from: "John"},
+//   {text: "How goes?", from: "John"},
+//   {text: "See you soon", from: "Alice"}
+// ];
+
+// let readMessages = new WeakSet();
+
+// // Два сообщения были прочитаны
+// readMessages.add(messages[0]);
+// readMessages.add(messages[1]);
+// // readMessages содержит 2 элемента
+
+// // ...давайте снова прочитаем первое сообщение!
+// readMessages.add(messages[0]);
+// // readMessages до сих пор содержит 2 элемента
+
+// // Вопрос: было ли сообщение message[0] прочитано?
+// alert("Read message 0: " + readMessages.has(messages[0])); // true
+
+// messages.shift();
+// // теперь readMessages содержит 1 элемент (хотя технически память может быть очищена позже)
+
+// let readMap = new WeakMap();
+
+// readMap.set(messages[0], new Date(2017, 1, 1));
+
+// function sumSalaries(salaries) {
+//   let salariesValie = 0;
+//     for (let salary of Object.values(salaries) ) {
+//        salariesValie += salary;
+// }
+// return salariesValie;
+// }
+// let salaries = {
+//     "John": 100,
+//     "Pete": 300,
+//     "Mary": 250
+//   };
+
+// alert( sumSalaries(salaries) );
+
+// class Welcome extends React.Component {
+//     render() {
+//       return <h1>Привіт, {this.props.name}</h1>;
+//     }
+//   }
+
+// function count(user) {
+//  return Object.keys(user).length;
+// }
+// let user = {
+//     name: 'John',
+//     age: 30
+//   };
+  
+//   alert( count(user) ); // 2
+
+// let options = {
+//     title: "My menu",
+//     items: ["Item1", "Item2"]
+//   };
+  
+//   // ...и она немедленно извлекает свойства в переменные
+//   function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
+//     // title, items – взято из options,
+//     // width, height – используются значения по умолчанию
+//     alert( `${title} ${width} ${height}` ); // My Menu 200 100
+//     alert( items ); // Item1, Item2
+//   }
+  
+//   showMenu(options);
+
+// let user = {
+//     name: "John",
+//     years: 30
+//   };
+// let {name, years : age, isAdmine = false} = user;
+
+// alert( name ); // John
+// alert( age ); // 30
+// alert( isAdmine ); // false
+
+// function topSalary(salaries) {
+//     let max = 0;
+//     maxName = null;
+
+//     for(const [name, salary] of Object.entries(salaries)) {
+//         if (max < salary) {
+//             max = salary;
+//             maxName = name;
+//         }
+//     }
+//     return maxName;
+// }
+// let salaries = {
+//     "John": 100,
+//     "Pete": 300,
+//     "Mary": 250
+//   };
+//   alert (topSalary(salaries));
+
+let company = { // тот же самый объект, сжатый для краткости
+    sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
+    development: {
+      sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+      internals: [{name: 'Jack', salary: 1300}]
+    }
+  };
+  
+  // Функция для подсчёта суммы зарплат
+  function sumSalaries(department) {
+    if (Array.isArray(department)) { // случай (1)
+      return department.reduce((prev, current) => prev + current.salary, 0); // сумма элементов массива; prev i current можна вводити будь яку, як змінні в які записуються дані
+    } else { // случай (2)
+      let sum = 0;
+      for (let subdep of Object.values(department)) {
+        sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
+      }
+      return sum;
+    }
+  }
+  
+  alert(sumSalaries(company)); // 6700
