@@ -517,187 +517,25 @@ do { myNumber = prompt('Введіть значення', '0');
 //   };
 //   alert (topSalary(salaries));
 
-// let company = { // тот же самый объект, сжатый для краткости
-//     sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
-//     development: {
-//       sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
-//       internals: [{name: 'Jack', salary: 1300}]
-//     }
-//   };
+let company = { // тот же самый объект, сжатый для краткости
+    sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
+    development: {
+      sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+      internals: [{name: 'Jack', salary: 1300}]
+    }
+  };
   
-//   // Функция для подсчёта суммы зарплат
-//   function sumSalaries(department) {
-//     if (Array.isArray(department)) { // случай (1)
-//       return department.reduce((prev, current) => prev + current.salary, 0); // сумма элементов массива; prev i current можна вводити будь яку, як змінні в які записуються дані
-//     } else { // случай (2)
-//       let sum = 0;
-//       for (let subdep of Object.values(department)) {
-//         sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
-//       }
-//       return sum;
-//     }
-//   }
-  
-//   alert(sumSalaries(company)); // 6700
-
-//   let arr = [5, 6, 12];
-//   let myStringFun = () => {return arr[0] + arr[2];};
-//   alert(myStringFun());
-
-
-// function sum(a) {
-//     return function(b) {
-//         return a + b;
-//     };
-// }
-// alert ( sum(3)(4) );
-
-// function inBetween(a, b) {
-//    return function(x) {
-//        return x >= a && x <= b;
-//    };
-// }
-// function inArray(arr) {
-//     return function(x){
-//         return arr.includes(x);  
-//     }
-// }
-// let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-// alert( arr.filter(inBetween(2, 9)) );
-//  console.log( arr.filter(inArray([1, 3])) );
-
-// function byField(props) {
-//     users.sort( (a, b) => a[props] > b[props] ? 1 : -1)
-//     return users.forEach(user => console.log(user[props]));
-// }
-// let users = [
-//     { name: "John", age: 20, surname: "Johnson" },
-//     { name: "Pete", age: 18, surname: "Peterson" },
-//     { name: "Ann", age: 19, surname: "Hathaway" }
-//   ];
-  
-// console.log(byField('age'));
-
-// let myCount = prompt("?", ""); 
-
-// function makeCounter() {
-   
-//     let count = "";
-//     count = myCount;
-    
-//     function counter() {
-//         return count++ ;
-//     };
-//     counter.set = value => count = value;
-//     counter.decrease =  () => count--;
-//         return counter;
-    
-// }
-// let counter = makeCounter();
-
-// alert( counter() );
-// alert( counter() );
-// alert( counter() );
-
-// function sum(a) {
-//     let currentSum = a;
-
-//     function f(b) {
-//         currentSum += b;
-//         return f;
-//     }
-//     f.toString = function() {
-//         return currentSum;
-//     };
-//     return f;
-// }
-
-// alert( sum(3)(5)(4));
-
-// function printNumbers() {
-//        let a = 5;
-//        let from = function from() {
-//            console.log(a); 
-//        } 
-//        setTimeout(from, 5000);
-//        let to = function to() {
-//            return clearInterval(from);
-//        }
-//        setInterval(to, 2000);
-// }
-// printNumbers();
-// clearInterval(printNumbers, 1000)
-// // console.log(printNumbers());
-
-// function printNumbers(from, to) {
-//     let current = from;
-
-//     let timerId = setInterval(function() {
-//         alert(current);
-//         if (current == to) {
-//             clearInterval(timerId);
-//         }
-//         current++;
-//     }, 1000);
-// }
-
-// printNumbers(4, 12);
-
-// function printNumbers(from, to) {
-//     let current = from;
-
-//     setTimeout(function go() {
-//         alert(current);
-//         if (current < to) {
-//             setTimeout(go, 1000);
-//         }
-//         current++;
-//     }, 1000);
-// }
-
-// printNumbers(3, 9);
-
-// function printNumbers(from, to) {
-//     let number = from;
-
-//     function go() {
-//         alert(number);
-//         if (number == to) {
-//             clearInterval(timerId);
-//         }
-//         number++;
-//     }
-//     go();
-//     let timerId = setInterval(go, 100);
-// }
-// printNumbers(4, 8);
-
-function slow(x) {
-    // здесь могут быть ресурсоёмкие вычисления
-    alert(`Called with ${x}`);
-    return x;
-  }
-  
-  function cachingDecorator(func) {
-    let cache = new Map();
-  
-    return function(x) {
-      if (cache.has(x)) {    // если кеш содержит такой x,
-        return cache.get(x); // читаем из него результат
+  // Функция для подсчёта суммы зарплат
+  function sumSalaries(department) {
+    if (Array.isArray(department)) { // случай (1)
+      return department.reduce((prev, current) => prev + current.salary, 0); // сумма элементов массива; prev i current можна вводити будь яку, як змінні в які записуються дані
+    } else { // случай (2)
+      let sum = 0;
+      for (let subdep of Object.values(department)) {
+        sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
       }
-  
-      let result = func(x); // иначе, вызываем функцию
-  
-      cache.set(x, result); // и кешируем (запоминаем) результат
-      return result;
-    };
+      return sum;
+    }
   }
   
-  slow = cachingDecorator(slow);
-  
-  alert( slow(1) ); // slow(1) кешируем
-  alert( "Again: " + slow(1) ); // возвращаем из кеша
-  
-  alert( slow(2) ); // slow(2) кешируем
-  alert( "Again: " + slow(2) ); // возвращаем из кеша
-
+  console.log(sumSalaries);
