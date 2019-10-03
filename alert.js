@@ -672,32 +672,61 @@ do { myNumber = prompt('Введіть значення', '0');
 // }
 // printNumbers(4, 8);
 
-function slow(x) {
-    // здесь могут быть ресурсоёмкие вычисления
-    alert(`Called with ${x}`);
-    return x;
-  }
+// function slow(x) {
+//     // здесь могут быть ресурсоёмкие вычисления
+//     alert(`Called with ${x}`);
+//     return x;
+//   }
   
-  function cachingDecorator(func) {
-    let cache = new Map();
+//   function cachingDecorator(func) {
+//     let cache = new Map();
   
-    return function(x) {
-      if (cache.has(x)) {    // если кеш содержит такой x,
-        return cache.get(x); // читаем из него результат
-      }
+//     return function(x) {
+//       if (cache.has(x)) {    // если кеш содержит такой x,
+//         return cache.get(x); // читаем из него результат
+//       }
   
-      let result = func(x); // иначе, вызываем функцию
+//       let result = func(x); // иначе, вызываем функцию
   
-      cache.set(x, result); // и кешируем (запоминаем) результат
-      return result;
-    };
-  }
+//       cache.set(x, result); // и кешируем (запоминаем) результат
+//       return result;
+//     };
+//   }
   
-  slow = cachingDecorator(slow);
+//   slow = cachingDecorator(slow);
   
-  alert( slow(1) ); // slow(1) кешируем
-  alert( "Again: " + slow(1) ); // возвращаем из кеша
+//   alert( slow(1) ); // slow(1) кешируем
+//   alert( "Again: " + slow(1) ); // возвращаем из кеша
   
-  alert( slow(2) ); // slow(2) кешируем
-  alert( "Again: " + slow(2) ); // возвращаем из кеша
+//   alert( slow(2) ); // slow(2) кешируем
+//   alert( "Again: " + slow(2) ); // возвращаем из кеша
 
+let worker = {
+  someMethod() {
+    return 1;
+  },
+  slow(x) {
+    alert("Called with" + x);
+    return x * this.someMethod();
+  }
+};
+
+function cachingDecorator(func) {
+  let cache = new Map();
+  return function(x) {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+    let result = func.call(this, x);
+    cache.set(x, result);
+    return result;
+  };
+}
+
+worker.slow = cachingDecorator(worker.slow);
+
+alert( worker.slow(5));
+alert( worker.slow(7));
+
+
+  
